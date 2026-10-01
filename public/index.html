@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brand Builder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="logo">Brand<span>Builder</span></div>
+      <div class="model-pill" id="modelPill">Nano-Banana</div>
+    </header>
+
+    <main class="layout">
+      <form class="brief" id="briefForm" autocomplete="off">
+        <h1>Describe your product</h1>
+        <p class="lede">We design one master product shot, then place that exact product into every medium you pick.</p>
+
+        <label>Brand name <input name="brandName" required maxlength="80" placeholder="Lumen" /></label>
+        <label>Product name <input name="productName" maxlength="120" placeholder="Sparkling botanical tonic" /></label>
+        <label>
+          Description
+          <textarea
+            name="description"
+            required
+            rows="5"
+            maxlength="1500"
+            placeholder="A slim matte-white aluminium can with a gold pull tab, a hand-drawn lemon and juniper illustration wrapping the can, and a minimal black serif logo."
+          ></textarea>
+        </label>
+        <label>Tagline <input name="tagline" maxlength="140" placeholder="Brighten every pour." /></label>
+        <label>Art direction <input name="style" maxlength="200" placeholder="Sunlit, minimalist, Scandinavian" /></label>
+
+        <fieldset class="colors">
+          <legend>Brand colours</legend>
+          <div class="swatches" id="swatches"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Mediums</legend>
+          <div class="chips" id="mediumChips"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Product reference</legend>
+          <div class="ref-mode">
+            <label class="radio"><input type="radio" name="refMode" value="generate" checked /> Design it for me</label>
+            <label class="radio"><input type="radio" name="refMode" value="upload" /> Use my product photo</label>
+          </div>
+          <input type="file" id="refUpload" accept="image/png,image/jpeg,image/webp" hidden />
+        </fieldset>
+
+        <button type="submit" class="primary" id="goBtn">Build campaign</button>
+        <p class="hint">No people appear in any image — every shot is checked and re-rolled if one slips in.</p>
+      </form>
+
+      <section class="board" id="board">
+        <div class="empty" id="emptyState">
+          <div class="empty-art" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2>Your campaign appears here</h2>
+          <p>Billboards, newspaper ads, social posts and more — all featuring the same product.</p>
+        </div>
+
+        <div class="reference hidden" id="referenceCard">
+          <div class="reference-img"><img id="referenceImg" alt="Master product reference" /></div>
+          <div class="reference-meta">
+            <span class="eyebrow">Master product</span>
+            <h2 id="referenceTitle"></h2>
+            <p>Every medium is generated from this exact image to keep the product consistent.</p>
+            <div class="row">
+              <button type="button" class="ghost" id="newRefBtn">New product design</button>
+              <button type="button" class="ghost" id="rerunAllBtn">Regenerate all mediums</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid" id="grid"></div>
+      </section>
+    </main>
+
+    <dialog id="lightbox">
+      <img id="lightboxImg" alt="" />
+      <form method="dialog"><button class="close" aria-label="Close">×</button></form>
+    </dialog>
+
+    <template id="cardTpl">
+      <article class="card" data-state="pending">
+        <div class="frame"><img alt="" /><div class="loader"><span></span>Waiting…</div></div>
+        <footer>
+          <div>
+            <strong class="title"></strong>
+            <span class="meta"></span>
+          </div>
+          <div class="actions">
+            <button type="button" class="icon tweak" title="Regenerate with a note">↻</button>
+            <a class="icon download" title="Download" download>↓</a>
+          </div>
+        </footer>
+        <div class="tweak-box hidden">
+          <input placeholder="Optional note, e.g. “make it night time”" maxlength="300" />
+          <button type="button" class="small">Regenerate</button>
+        </div>
+      </article>
+    </template>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

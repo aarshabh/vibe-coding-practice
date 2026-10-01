@@ -1,0 +1,28 @@
+{
+  "name": "brand-builder",
+  "version": "1.0.0",
+  "description": "Describe a product and see it across billboards, newspapers and social posts — generated with Nano-Banana.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.js",
+    "dev": "node --watch --env-file-if-exists=.env server.js",
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aarshabh/vibe-coding-practice.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aarshabh/vibe-coding-practice/issues"
+  },
+  "homepage": "https://github.com/aarshabh/vibe-coding-practice#readme",
+  "dependencies": {
+    "@google/genai": "^2.25.0",
+    "express": "^5.2.1"
+  },
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  }
+}
